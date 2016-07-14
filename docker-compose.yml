@@ -1,0 +1,26 @@
+version: '2'
+services:
+  whatmanager:
+    build: .
+    # TODO: consider the number of workers here (-w)
+    command: gunicorn WhatManager2.wsgi:application -w 2 -b :8000
+    depends_on:
+      - db
+    volumes:
+      # For nginx to access the static files
+      - /usr/src/app/static
+  db:
+    image: mysql
+    environment:
+      # TODO: is this secure?
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: what_manager2
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+  nginx:
+    build: ./Docker-nginx
+    ports:
+      - "80:80"
+    restart: always
+    volumes_from:
+      - whatmanager
