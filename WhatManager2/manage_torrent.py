@@ -16,7 +16,7 @@ def add_torrent(request, instance, download_location, what_id, add_to_client=Tru
         if add_to_client:
             try:
                 TransTorrent.objects.get(instance__in=masters, info_hash=w_torrent.info_hash)
-                raise TorrentAlreadyAddedException(u'Already added.')
+                raise TorrentAlreadyAddedException('Already added.')
             except TransTorrent.DoesNotExist:
                 pass
 
@@ -36,7 +36,7 @@ def add_torrent(request, instance, download_location, what_id, add_to_client=Tru
                 m_torrent.save()
 
                 if add_to_client:
-                    download_dir = os.path.join(download_location.path, unicode(w_torrent.id))
+                    download_dir = os.path.join(download_location.path, str(w_torrent.id))
                     t_torrent = instance.client.add_torrent(
                         w_torrent.torrent_file,
                         download_dir=download_dir,

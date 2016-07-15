@@ -28,9 +28,9 @@ def upload_image_from_memory(data):
     }
     r = session.post('https://whatimg.com/upload.php', files=files, data=payload)
     if r.status_code != requests.codes.ok:
-        raise Exception(u'Error during uploading: error code {0}'.format(r.status_code))
+        raise Exception('Error during uploading: error code {0}'.format(r.status_code))
     pq = pyquery.PyQuery(r.text)
     link = pq('input.input_field:first')
     if len(link) == 0:
-        raise Exception(u'Error during uploading: no links found')
+        raise Exception('Error during uploading: no links found')
     return link.val()
