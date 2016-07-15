@@ -124,7 +124,7 @@ def queue_pop(request):
     data = {
         'front': QueueItem.get_front()
     }
-    return render(request, 'queue/part_ui/queue_pop.html', data)
+    return render(request, 'wm_queue/part_ui/queue_pop.html', data)
 
 
 @login_required
@@ -139,7 +139,7 @@ def queue_stats(request):
         'total_size': QueueItem.objects.aggregate(Sum('torrent_size'))['torrent_size__sum'],
         'auto_pop_ratio_delta': ratio_delta,
     }
-    return render(request, 'queue/part_ui/queue_stats.html', data)
+    return render(request, 'wm_queue/part_ui/queue_stats.html', data)
 
 
 @login_required
