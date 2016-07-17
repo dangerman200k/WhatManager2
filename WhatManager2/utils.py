@@ -64,7 +64,7 @@ def copy_properties(a, b, props):
 
 
 def wm_hmac(plaintext):
-    bin_sig = hmac.new(SECRET_KEY, plaintext, hashlib.sha256).digest()
+    bin_sig = hmac.new(str.encode(SECRET_KEY), str.encode(plaintext), hashlib.sha256).digest()
     return base64.urlsafe_b64encode(bin_sig)
 
 
