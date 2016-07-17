@@ -17,7 +17,9 @@ def download_zip_handler(download_filename, paths):
     buffer = io.BytesIO()
     with zipfile.ZipFile(buffer, "w", zipfile.ZIP_STORED, True) as zipDownload:
         for rel_path, file in paths:
-            zipDownload.write(file, rel_path.decode(), zipfile.ZIP_STORED)
+            if type(rel_path) == bytes:
+                rel_path = rel_path.decode()
+            zipDownload.write(file, rel_path, zipfile.ZIP_STORED)
     buffer.flush()
 
     response = HttpResponse(content_type='application/zip')
