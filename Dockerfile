@@ -1,14 +1,14 @@
 # In the long term, having WM in its own container and Transmission in another would seem like an ideal approach.
 # Unfortunately, it's hard to make that work with WM's management of Transmission instances, so, this is a stop-gap approach
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-# Prep for running the setup scripts without modifying them. Will run as root but still need sudo command to avoid errors
-RUN apt-get update && apt-get -y install sudo
+# We need sudo for the setup scripts, and Upstart for the transmission services
+RUN apt-get update && apt-get -y install sudo upstart-sysv sysvinit-utils
 
 RUN ./setup.sh
 RUN ./setup_transmission-2.92.sh

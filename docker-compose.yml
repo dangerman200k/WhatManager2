@@ -9,6 +9,8 @@ services:
     volumes:
       # For nginx to access the static files
       - /usr/src/app/static
+      # Wherever you want to be able to download/seed things to/from
+      - /path/to/pth:/mnt/pth
   db:
     image: mysql
     environment:
