@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^search$', views.search),
     url(r'^torrents_info$', views.torrents_info),
     url(r'^get_torrent_file/(\d+)$', views.get_torrent_file),
+    url(r'^cache_next$', views.cache_next, name='bibliotik_json-cache_next'),
     # Maintenance views
     url(r'^refresh_oldest_torrent$', maintenance_views.refresh_oldest_torrent, name='bibliotik_json-refresh_oldest_torrent'),
     url(r'^reparse_bibliotik_pages$', maintenance_views.reparse_bibliotik_pages),

@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name What.CD / WM Integrator
 // @namespace https://karamanolev.com
-// @version 1.2.1
+// @version 1.2.2
 // @description Integration between WM and What.CD
-// @match https://what.cd/*
+// @match https://passtheheadphones.me/*
 // @grant GM_xmlhttpRequest
 // @updateURL {{ root }}/userscript/what.cd.user.js
 // @require https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js
@@ -133,7 +133,7 @@ function downloadTorrent(row) {
             row.actions.text('ERR');
         } else {
             noty({
-                text: 'Error adding ' + resp.id + ': ' + addResult.error,
+                text: 'Error adding ' + row.whatId + ': ' + addResult.error,
                 type: 'error'
             });
             row.actions.text('ERR');
