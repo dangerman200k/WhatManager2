@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # We need sudo for the setup scripts, and Upstart for the transmission services
-RUN apt-get update && apt-get -y install sudo upstart-sysv sysvinit-utils
+RUN apt-get update && apt-get -y install sudo upstart-sysv sysvinit-utils cron
 
 RUN ./setup.sh
 RUN ./setup_transmission-2.92.sh
